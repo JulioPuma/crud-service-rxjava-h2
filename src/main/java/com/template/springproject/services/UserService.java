@@ -2,8 +2,10 @@ package com.template.springproject.services;
 
 import com.template.springproject.model.User;
 import com.template.springproject.util.MemoryDataBase;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,29 +27,37 @@ public class UserService {
     }
 
 
-    public Maybe<User> getUser (Integer userId) {
-        return Maybe.create(emitter -> memoryDataBase.findById(userId));
-                //.doOnError(throwable -> log.error("Error: ", throwable))
+    public Single<User> getUser (Integer userId) {
+        return Single.just(memoryDataBase.findById(userId));
     }
 
 
-
-    public User createUser(User user) {
-        return null;
+    public Single<User> createUser(User user) {
+        return Single.just(memoryDataBase.save(user));
     }
 
 
-    public User updateUser(User user) {
-        return null;
+    public Single<User> updateUser(User user) {
+        return Single.just(memoryDataBase.update(user));
     }
 
 
-    public User patchUser(User user) {
-        return null;
+    public Single<User> patchUser(User user) {
+
+        return getUser(user.getId())
+                .map(userFromDB -> fillUser(userFromDB, user))
+                .flatMap(this::updateUser);
     }
 
 
-    public User getUser() {
-        return null;
+    public Completable deleteUser(Integer userId) {
+        return Completable.fromAction(() -> memoryDataBase.deleteById(userId));
+    }
+
+
+    private User fillUser(User userFromDB, User userUpdated){
+        Optional.ofNullable(userUpdated.getName()).ifPresent(userFromDB::setName);
+        Optional.ofNullable(userUpdated.getEmail()).ifPresent(userFromDB::setEmail);
+        return userFromDB;
     }
 }

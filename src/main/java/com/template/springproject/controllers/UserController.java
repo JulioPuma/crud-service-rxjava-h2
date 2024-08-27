@@ -21,36 +21,38 @@ public class UserController {
     @GetMapping("")
     public Observable<User> getUsers() {
 
-        return null;
+        return userService.getUsers();
     }
 
     @GetMapping("/{userId}")
-    public Maybe<User> getUser (
+    public Single<User> getUser (
             @PathVariable Integer userId) {
 
-        return null;
+        return userService.getUser(userId);
     }
 
     @PostMapping("")
     public Single<User> createUser(
             @RequestBody User user) {
-        return null;
+        return userService.createUser(user);
     }
 
     @PutMapping("")
-    public Maybe<User> updateUser(
+    public Single<User> updateUser(
             @RequestBody User user) {
-        return null;
+        return userService.updateUser(user);
     }
 
     @PatchMapping("")
-    public Maybe<User> patchUser(
+    public Single<User> patchUser(
             @RequestBody User user) {
-        return null;
+        return userService.patchUser(user);
     }
 
     @DeleteMapping("/{userId}")
-    public Completable getUser() {
-        return null;
+    public Completable deleteUser(
+            @PathVariable Integer userId
+    ) {
+        return userService.deleteUser(userId);
     }
 }

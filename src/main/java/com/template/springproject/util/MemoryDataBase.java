@@ -1,40 +1,49 @@
 package com.template.springproject.util;
 
 import com.template.springproject.model.User;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 /**
  * MemoryDataBase Class. <br/>
  * Description: Simulate a sync database.
  * @author JulioPuma
  */
-@Repository
+@Component
 public class MemoryDataBase {
-    private List<User> users = new ArrayList<>();
-    private Integer currentId = 1;
+    private List<User> usersFromDatabase = new ArrayList<>(Util.generateUsers());
+    private Integer currentId = usersFromDatabase.size() + 1;
 
     public List<User> findAll() {
-        return users;
+        usersFromDatabase.sort(Comparator.comparingInt(User::getId));
+        return usersFromDatabase;
     }
 
     public User findById(Integer id) {
-        return users.stream()
+        return usersFromDatabase.stream()
                 .filter(p -> p.getId().equals(id))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new NoSuchElementException("No existe usuario."));
     }
 
     public User save(User user) {
         user.setId(currentId++);
-        users.add(user);
+        usersFromDatabase.add(user);
+        return user;
+    }
+
+    public User update(User user) {
+        usersFromDatabase.remove(findById(user.getId()));
+        usersFromDatabase.add(user);
         return user;
     }
 
     public void deleteById(Integer id) {
-        users.removeIf(p -> p.getId().equals(id));
+        usersFromDatabase.remove(findById(id));
     }
 }
