@@ -1,18 +1,22 @@
-#  Base Project for Spring
+#  CRUD service using RXJava3
 
-Project used like template for other projects.
+CRUD Project with RXJava3 managing reactive flows. Database was created internally.
+
+Extra: Using Exception Handler using @ControllerAdvice and @ExceptionHandler
 
 * Language: Java 17 
 * Framework: SpringBoot 3
 * Dependency management: Maven 3.6.3
 
-<img src="./src/main/resources/images/markdown/java17-logo.png" alt="MarineGEO circle logo" style="height: 50px; width:100px;"/>
-<img src="./src/main/resources/images/markdown/springboot.png" alt="MarineGEO circle logo" style="height: 50px; width:100px;"/>
+<img src="./src/main/resources/images/markdown/java17-logo.png" alt="logo" style="height: 50px; width:100px;"/>
+<img src="./src/main/resources/images/markdown/springboot.png" alt="logo" style="height: 50px; width:100px;"/>
+<img src="./src/main/resources/images/markdown/reactiveX.png" alt="logo" style="height: 50px; width:100px; background-color:white" />
 
 ## Dependencies
 
 - spring-boot-starter-web
 - lombok
+- RxJava3
 
 ## Package
 
