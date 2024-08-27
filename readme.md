@@ -1,6 +1,8 @@
-#  Base Project for Spring
+#  CRUD service using RXJava3
 
-Project used like template for other projects.
+CRUD Project with RXJava3 managing reactive flows. Database was created internally.
+
+Extra: Using Exception Handler using @ControllerAdvice and @ExceptionHandler
 
 * Language: Java 17 
 * Framework: SpringBoot 3
