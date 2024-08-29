@@ -2,17 +2,14 @@ spring:
   sql:
     init:
       platform: h2
-      schema-locations: 'classpath:h2-scripts/schema-h2.sql'
-      data-locations: 'classpath:h2-scripts/data-h2.sql'
+      schema-locations: 'classpath:h2-scripts/schema-${spring.sql.init.platform}.sql'
+      data-locations: 'classpath:h2-scripts/data-${spring.sql.init.platform}.sql'
       #continue-on-error: true
   datasource:
     url: jdbc:h2:mem:testdb # Usa una base de datos en memoria
     username: sa # Usuario por defecto para H2
     password: # Sin contraseña por defecto
     driver-class-name: org.h2.Driver # Driver de H2
-    initialization-mode: always
-    #schema:
-    #data: 'classpath: h2-scripts/data-h2.sql'
 
   h2:
     console:

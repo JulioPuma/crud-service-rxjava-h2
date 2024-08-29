@@ -22,7 +22,7 @@ Click the link below to download the Postman collection:
 1. Download the file from the link above.
 2. Open Postman.
 3. Click "Import" in the top left corner.
-4. Select the downloaded `crud-service-rxjava.postman_collection.json` file.
+4. Select the downloaded `crud-service-rxjava-h2.postman_collection.json` file.
 5. You can now test the API endpoints using the provided examples.
 
 ## Dependencies
