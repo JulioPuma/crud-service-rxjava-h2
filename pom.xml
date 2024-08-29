@@ -10,10 +10,10 @@
 	</parent>
 
 	<groupId>com.template.springproject</groupId>
-	<artifactId>crud-service-java</artifactId>
+	<artifactId>crud-service-rxjava-h2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>base-spring-project</name>
-	<description>CRUD Implementation using RxJava to test reactive flows.</description>
+	<name>crud-service-rxjava-h2</name>
+	<description>CRUD Implementation using RxJava and H2.</description>
 
 	<properties>
 		<java.version>17</java.version>
@@ -33,6 +33,15 @@
 			<groupId>io.reactivex.rxjava3</groupId>
 			<artifactId>rxjava</artifactId>
 			<version>3.1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- Test dependencies-->

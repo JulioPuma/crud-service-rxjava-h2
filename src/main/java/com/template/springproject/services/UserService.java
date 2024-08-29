@@ -1,17 +1,13 @@
 package com.template.springproject.services;
 
 import com.template.springproject.model.User;
-import com.template.springproject.util.MemoryDataBase;
+import com.template.springproject.repository.UserRepository;
 import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -20,25 +16,27 @@ import java.util.Optional;
 @Slf4j
 public class UserService {
 
-    private final MemoryDataBase memoryDataBase;
+    private final UserRepository userRepository;
 
     public Observable<User> getUsers() {
-        return Observable.fromIterable(memoryDataBase.findAll());
+        return Observable.fromIterable(userRepository.findAll());
     }
 
 
     public Single<User> getUser (Integer userId) {
-        return Single.just(memoryDataBase.findById(userId));
+        return Single.just(
+                userRepository.findById(userId)
+                .orElseThrow(() -> new NoSuchElementException("No existe usuario.")));
     }
 
 
     public Single<User> createUser(User user) {
-        return Single.just(memoryDataBase.save(user));
+        return Single.just(userRepository.save(user));
     }
 
 
     public Single<User> updateUser(User user) {
-        return Single.just(memoryDataBase.update(user));
+        return Single.just(userRepository.save(user));
     }
 
 
@@ -51,7 +49,7 @@ public class UserService {
 
 
     public Completable deleteUser(Integer userId) {
-        return Completable.fromAction(() -> memoryDataBase.deleteById(userId));
+        return Completable.fromAction(() -> userRepository.deleteById(userId));
     }
 
 

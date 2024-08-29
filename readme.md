@@ -1,6 +1,6 @@
-#  CRUD service using RXJava3
+#  CRUD service using RXJava3 And H2
 
-CRUD Project with RXJava3 managing reactive flows. Database was created internally.
+CRUD Project with RXJava3 managing reactive flows. Database was created using H2.
 
 Extra: Using Exception Handler using @ControllerAdvice and @ExceptionHandler
 
@@ -11,6 +11,7 @@ Extra: Using Exception Handler using @ControllerAdvice and @ExceptionHandler
 <img src="docs/markdown/java17-logo.png" alt="logo" style="height: 50px; width:100px;"/>
 <img src="docs/markdown/springboot.png" alt="logo" style="height: 50px; width:100px;"/>
 <img src="docs/markdown/reactiveX.png" alt="logo" style="height: 50px; width:100px; background-color:white" />
+<img src="docs/markdown/h2.png" alt="logo" style="height: 50px; width:100px; background-color:white" />
 
 ## Postman Collection
 
@@ -21,7 +22,7 @@ Click the link below to download the Postman collection:
 1. Download the file from the link above.
 2. Open Postman.
 3. Click "Import" in the top left corner.
-4. Select the downloaded `crud-service-rxjava.postman_collection.json` file.
+4. Select the downloaded `crud-service-rxjava-h2.postman_collection.json` file.
 5. You can now test the API endpoints using the provided examples.
 
 ## Dependencies
@@ -29,6 +30,7 @@ Click the link below to download the Postman collection:
 - spring-boot-starter-web
 - lombok
 - RxJava3
+- h2
 
 ## Package
 
