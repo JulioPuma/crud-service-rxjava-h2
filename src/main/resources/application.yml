@@ -1,6 +1,9 @@
 spring:
+  profiles:
+    active: h2
   application:
-    name: base-spring-project
+    name: crud-service-rxjava-h2
+
 
 server.port: 8080
 
